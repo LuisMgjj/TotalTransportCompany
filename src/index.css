@@ -115,6 +115,12 @@
     @apply bg-white/70 backdrop-blur-md border border-white/40;
   }
 
+  .site-logo-link,
+  header .container-ttc > a[href="#"] {
+    font-size: 0;
+    line-height: 0;
+  }
+
   .eco-chip {
     @apply inline-flex items-center gap-2 rounded-full border border-eco/20 bg-eco-soft px-4 py-1.5 text-xs font-semibold uppercase tracking-wider text-eco-foreground;
     color: hsl(var(--eco));
@@ -134,10 +140,83 @@
     from { opacity: 0; transform: translateY(24px); }
     to { opacity: 1; transform: translateY(0); }
   }
+  @keyframes fade-in {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
   @keyframes pulse-ring {
     0% { box-shadow: 0 0 0 0 hsl(var(--eco) / 0.5); }
     100% { box-shadow: 0 0 0 22px hsl(var(--eco) / 0); }
   }
-  .animate-fade-up { animation: fade-up 0.8s var(--ease-smooth) both; }
+  @keyframes float-soft {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-8px); }
+  }
+  @keyframes shimmer {
+    0% { background-position: -200% 0; }
+    100% { background-position: 200% 0; }
+  }
+  @keyframes gradient-shift {
+    0%, 100% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+  }
+  @keyframes hero-zoom {
+    from { transform: scale(1.08); }
+    to { transform: scale(1); }
+  }
+  @keyframes spin-slow {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+  }
+  .animate-fade-up { animation: fade-up 0.9s var(--ease-smooth) both; }
+  .animate-fade-in { animation: fade-in 0.6s var(--ease-smooth) both; }
   .animate-pulse-ring { animation: pulse-ring 2s ease-out infinite; }
+  .animate-float { animation: float-soft 6s ease-in-out infinite; }
+  .animate-hero-zoom { animation: hero-zoom 1.6s var(--ease-smooth) both; }
+  .animate-spin-slow { animation: spin-slow 24s linear infinite; }
+  .animate-gradient-shift {
+    background-size: 200% 200%;
+    animation: gradient-shift 12s ease infinite;
+  }
+  .hover-lift {
+    transition: transform 0.4s var(--ease-smooth), box-shadow 0.4s var(--ease-smooth);
+  }
+  .hover-lift:hover { transform: translateY(-6px); }
+
+  .page-transition {
+    animation: fade-up 0.6s var(--ease-smooth) both;
+  }
+
+  .underline-grow {
+    position: relative;
+  }
+  .underline-grow::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -4px;
+    height: 2px;
+    width: 100%;
+    background: var(--gradient-eco);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.4s var(--ease-smooth);
+  }
+  .underline-grow:hover::after,
+  .underline-grow.is-active::after {
+    transform: scaleX(1);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .animate-fade-up,
+    .animate-fade-in,
+    .animate-pulse-ring,
+    .animate-float,
+    .animate-hero-zoom,
+    .animate-spin-slow,
+    .animate-gradient-shift,
+    .page-transition {
+      animation: none !important;
+    }
+  }
 }
