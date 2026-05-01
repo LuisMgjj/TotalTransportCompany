@@ -25,7 +25,7 @@ const SiteFooter = () => {
                 <MapPin className="h-4 w-4 shrink-0 mt-0.5" /> Cheerstrasse 16, 6014 Luzern
               </li>
               <li className="flex gap-2">
-                <Mail className="h-4 w-4 shrink-0 mt-0.5" /> info@ttc.plus
+                <Mail className="h-4 w-4 shrink-0 mt-0.5" /> info@ttc.taxi
               </li>
               <li className="flex gap-2">
                 <Clock className="h-4 w-4 shrink-0 mt-0.5" /> 24/7 verfügbar

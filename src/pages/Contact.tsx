@@ -18,10 +18,12 @@ import { Textarea } from "@/components/ui/textarea";
 import Reveal from "@/components/Reveal";
 import { toast } from "@/hooks/use-toast";
 
+const FORM_ACTION = "https://formspree.io/f/xbdwjezl";
+
 const faqs = [
   {
     q: "Wie schnell antworten Sie auf eine Anfrage?",
-    a: "Innerhalb von 2 Stunden während der Tageszeit. Anfragen über das Formular senden auch nachts ein Bestätigungsmail.",
+    a: "Innerhalb von 24 Stunden. Anfragen über das Formular senden auch nachts ein Bestätigungsmail.",
   },
   {
     q: "Welche Zahlungsarten akzeptieren Sie?",
@@ -40,17 +42,41 @@ const faqs = [
 const Contact = () => {
   const [sending, setSending] = useState(false);
 
-  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setSending(true);
-    setTimeout(() => {
-      setSending(false);
-      toast({
-        title: "Anfrage gesendet",
-        description: "Wir melden uns innerhalb von 2 Stunden bei Ihnen.",
+
+    const formData = new FormData(e.currentTarget);
+    const data = Object.fromEntries(formData.entries());
+
+    try {
+      const response = await fetch(FORM_ACTION, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+        body: JSON.stringify(data),
       });
-      (e.target as HTMLFormElement).reset();
-    }, 800);
+
+      if (response.ok) {
+        toast({
+          title: "Anfrage gesendet!",
+          description: "Wir melden uns innert 24 Stunden bei Ihnen.",
+        });
+        (e.target as HTMLFormElement).reset();
+      } else {
+        throw new Error("Fehler");
+      }
+    } catch {
+      toast({
+        title: "Fehler beim Senden",
+        description: "Bitte versuchen Sie es erneut.",
+        variant: "destructive",
+      });
+    } finally {
+      setSending(false);
+    }
   };
 
   return (
@@ -70,7 +96,7 @@ const Contact = () => {
             </Reveal>
             <Reveal delay={240}>
               <p className="mt-4 text-lg text-muted-foreground">
-                Anfrage senden und innerhalb von 2 Stunden eine Offerte erhalten.
+                Anfrage senden und innerhalb von 24 Stunden eine Offerte erhalten.
               </p>
             </Reveal>
 
@@ -91,7 +117,7 @@ const Contact = () => {
               </Reveal>
               <Reveal delay={400} variant="left">
                 <a
-                  href="mailto:info@ttc.plus"
+                  href="mailto:info@ttc.taxi"
                   className="flex items-center gap-4 p-4 rounded-xl bg-card shadow-card-soft hover-lift hover:shadow-elegant"
                 >
                   <div className="h-11 w-11 rounded-xl bg-gradient-primary flex items-center justify-center text-primary-foreground">
@@ -99,7 +125,7 @@ const Contact = () => {
                   </div>
                   <div>
                     <div className="text-xs text-muted-foreground">E-Mail</div>
-                    <div className="font-semibold text-primary-deep">info@ttc.plus</div>
+                    <div className="font-semibold text-primary-deep">info@ttc.taxi</div>
                   </div>
                 </a>
               </Reveal>
@@ -136,21 +162,22 @@ const Contact = () => {
               <h2 className="font-display text-2xl font-bold text-primary-deep mb-6">
                 Preisanfrage senden
               </h2>
-              <form className="space-y-5" onSubmit={handleSubmit}>
+              <form onSubmit={handleSubmit} className="space-y-5">
                 <div className="grid sm:grid-cols-2 gap-4">
                   <div>
                     <Label htmlFor="name">Name</Label>
-                    <Input id="name" required maxLength={100} className="mt-1.5" placeholder="Ihr Name" />
+                    <Input id="name" name="name" required maxLength={100} className="mt-1.5" placeholder="Ihr Name" />
                   </div>
                   <div>
                     <Label htmlFor="phone">Telefon</Label>
-                    <Input id="phone" type="tel" maxLength={30} className="mt-1.5" placeholder="+41 ..." />
+                    <Input id="phone" name="phone" type="tel" maxLength={30} className="mt-1.5" placeholder="+41 ..." />
                   </div>
                 </div>
                 <div>
                   <Label htmlFor="email">E-Mail</Label>
                   <Input
                     id="email"
+                    name="email"
                     type="email"
                     required
                     maxLength={255}
@@ -161,17 +188,18 @@ const Contact = () => {
                 <div className="grid sm:grid-cols-2 gap-4">
                   <div>
                     <Label htmlFor="from">Von</Label>
-                    <Input id="from" className="mt-1.5" placeholder="Abholort" />
+                    <Input id="from" name="from" className="mt-1.5" placeholder="Abholort" />
                   </div>
                   <div>
                     <Label htmlFor="to">Nach</Label>
-                    <Input id="to" className="mt-1.5" placeholder="Ziel" />
+                    <Input id="to" name="to" className="mt-1.5" placeholder="Ziel" />
                   </div>
                 </div>
                 <div>
                   <Label htmlFor="msg">Nachricht</Label>
                   <Textarea
                     id="msg"
+                    name="msg"
                     rows={4}
                     maxLength={1000}
                     className="mt-1.5"
@@ -222,7 +250,7 @@ const Contact = () => {
                   >
                     <Clock className="h-5 w-5" />
                   </div>
-                  <span>Antwort innerhalb von <strong className="text-primary-deep">2 Stunden</strong></span>
+                  <span>Antwort innerhalb von <strong className="text-primary-deep">24 Stunden</strong></span>
                 </div>
                 <div className="flex items-center gap-3 text-sm text-muted-foreground">
                   <div

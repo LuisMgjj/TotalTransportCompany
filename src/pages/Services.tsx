@@ -113,7 +113,7 @@ const Services = () => {
                     Bereit für Ihre nächste Fahrt?
                   </h2>
                   <p className="mt-3 text-white/90 text-lg">
-                    Senden Sie eine unverbindliche Anfrage — innerhalb von 2 Stunden erhalten Sie ein massgeschneidertes Angebot.
+                    Senden Sie eine unverbindliche Anfrage — innerhalb von 24 Stunden erhalten Sie ein massgeschneidertes Angebot.
                   </p>
                 </div>
                 <div className="md:justify-self-end">
