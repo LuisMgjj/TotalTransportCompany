@@ -2,8 +2,8 @@
 @tailwind components;
 @tailwind utilities;
 
-/* TTC Design System — Premium Eco-Tech
-   Primary = TTC logo blue. Accent = eco green.
+/* TTC Design System — Premium Blue
+   Primary = TTC logo blue. Accent = light blue.
    All colors in HSL. */
 
 @layer base {
@@ -21,12 +21,12 @@
     --primary: 224 80% 52%;
     --primary-foreground: 0 0% 100%;
     --primary-deep: 222 70% 22%;
-    --primary-glow: 220 95% 65%;
+    --primary-glow: 213 85% 62%;
 
-    /* Eco green accent */
-    --eco: 145 65% 42%;
+    /* Light blue accent */
+    --eco: 213 80% 55%;
     --eco-foreground: 0 0% 100%;
-    --eco-soft: 145 55% 92%;
+    --eco-soft: 213 60% 93%;
 
     --secondary: 214 45% 96%;
     --secondary-foreground: 222 60% 14%;
@@ -34,8 +34,8 @@
     --muted: 214 30% 95%;
     --muted-foreground: 215 18% 42%;
 
-    --accent: 145 55% 92%;
-    --accent-foreground: 145 70% 22%;
+    --accent: 213 60% 93%;
+    --accent-foreground: 213 70% 30%;
 
     --destructive: 0 84% 60%;
     --destructive-foreground: 0 0% 100%;
@@ -47,7 +47,7 @@
     --radius: 0.75rem;
 
     /* Gradients */
-    --gradient-hero: linear-gradient(135deg, hsl(222 70% 18% / 0.85) 0%, hsl(224 80% 40% / 0.55) 60%, hsl(145 65% 35% / 0.35) 100%);
+    --gradient-hero: linear-gradient(135deg, hsl(222 70% 18% / 0.85) 0%, hsl(224 80% 40% / 0.55) 60%, hsl(213 80% 40% / 0.35) 100%);
     --gradient-primary: linear-gradient(135deg, hsl(var(--primary)) 0%, hsl(var(--primary-glow)) 100%);
     --gradient-eco: linear-gradient(135deg, hsl(var(--primary)) 0%, hsl(var(--eco)) 100%);
     --gradient-soft: linear-gradient(180deg, hsl(210 40% 99%) 0%, hsl(214 45% 96%) 100%);
@@ -77,17 +77,17 @@
     --card-foreground: 210 40% 98%;
     --popover: 222 50% 9%;
     --popover-foreground: 210 40% 98%;
-    --primary: 220 95% 65%;
+    --primary: 213 85% 62%;
     --primary-foreground: 222 60% 10%;
     --secondary: 222 40% 14%;
     --secondary-foreground: 210 40% 98%;
     --muted: 222 40% 14%;
     --muted-foreground: 215 20% 70%;
-    --accent: 145 40% 20%;
-    --accent-foreground: 145 65% 80%;
+    --accent: 213 40% 20%;
+    --accent-foreground: 213 65% 80%;
     --border: 222 40% 18%;
     --input: 222 40% 18%;
-    --ring: 220 95% 65%;
+    --ring: 213 85% 62%;
   }
 }
 
