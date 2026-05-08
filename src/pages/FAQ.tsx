@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { ArrowRight, ChevronDown, HelpCircle, MessageSquare } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -14,6 +14,15 @@ const FaqAccordion = ({
   isOpen: boolean;
   onToggle: () => void;
 }) => {
+  const contentRef = useRef<HTMLDivElement>(null);
+  const [maxHeight, setMaxHeight] = useState(0);
+
+  useEffect(() => {
+    if (contentRef.current) {
+      setMaxHeight(contentRef.current.scrollHeight);
+    }
+  }, []);
+
   return (
     <div
       className={`border-b border-border/60 transition-colors ${isOpen ? "border-primary/30" : "hover:border-border"}`}
@@ -34,12 +43,14 @@ const FaqAccordion = ({
         />
       </button>
       <div
-        className={`grid overflow-hidden transition-all duration-300 ease-in-out ${
-          isOpen ? "grid-rows-[1fr] opacity-100 pb-5" : "grid-rows-[0fr] opacity-0 pb-0"
-        }`}
+        className="overflow-hidden transition-all duration-300 ease-out"
+        style={{
+          maxHeight: isOpen ? `${maxHeight}px` : "0px",
+          opacity: isOpen ? 1 : 0,
+        }}
       >
-        <div className="overflow-hidden">
-          <p className="text-sm text-muted-foreground leading-relaxed">
+        <div ref={contentRef}>
+          <p className="text-sm text-muted-foreground leading-relaxed pb-5">
             {faq.a}
           </p>
         </div>
