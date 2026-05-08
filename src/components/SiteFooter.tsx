@@ -10,7 +10,7 @@ const SiteFooter = () => {
         <div className="grid md:grid-cols-4 gap-10">
           <div className="md:col-span-2">
             <Link to="/" className="inline-flex items-center gap-3" aria-label="Startseite">
-              <img src={logo} alt="" className="h-10 w-auto md:h-11" />
+              <img src={logo} alt="" className="h-10 w-auto md:h-11 brightness-0 invert" />
             </Link>
             <p className="mt-4 text-white/70 max-w-md">
               Die grünste Transport-Lösung der Schweiz. 100% elektrisch, 100% professionell, 100% Schweizer Qualität.
