@@ -19,7 +19,7 @@ const SiteHeader = () => {
           className="site-logo-link flex items-center gap-3 text-[0] md:pl-0 pl-0 -ml-4"
           aria-label="Total Transport Company Startseite"
         >
-          <img src={logoNew} alt="" className="h-16 w-auto md:h-24 mt-5 md:mt-3" />
+          <img src={logoNew} alt="" className="h-16 w-auto md:h-[47px] mt-5 md:mt-3" />
         </Link>
         <nav className="hidden md:flex items-center gap-10">
           {navItems
