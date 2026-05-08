@@ -58,29 +58,22 @@ const SiteHeader = () => {
       </div>
 
       {/* Mobile slide-in overlay */}
-      <div
-        id="mobile-nav"
-        role="dialog"
-        aria-modal="true"
-        aria-label="Navigation"
-        className={cn(
-          "fixed inset-0 z-[60] transition-opacity duration-300 md:hidden",
-          menuOpen ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none",
-        )}
-      >
-        {/* Backdrop */}
+      {menuOpen && (
         <div
-          className="absolute inset-0 bg-black/40 backdrop-blur-sm"
-          onClick={closeMenu}
-        />
-
-        {/* Drawer panel */}
-        <div
-          className={cn(
-            "absolute right-0 top-0 h-full w-80 max-w-[85vw] bg-background shadow-2xl flex flex-col transition-transform duration-300",
-            menuOpen ? "translate-x-0" : "translate-x-full",
-          )}
+          id="mobile-nav"
+          role="dialog"
+          aria-modal="true"
+          aria-label="Navigation"
+          className="fixed inset-0 z-[60] md:hidden"
         >
+          {/* Backdrop */}
+          <div
+            className="absolute inset-0 bg-black/40 backdrop-blur-sm animate-fade-in"
+            onClick={closeMenu}
+          />
+
+          {/* Drawer panel */}
+          <div className="absolute right-0 top-0 h-full w-80 max-w-[85vw] bg-background shadow-2xl flex flex-col animate-slide-in">
           {/* Header */}
           <div className="flex items-center justify-between px-6 h-[72px] border-b border-border">
             <Link to="/" onClick={closeMenu} className="flex items-center gap-3">
@@ -130,6 +123,7 @@ const SiteHeader = () => {
           </nav>
         </div>
       </div>
+      )}
     </header>
   );
 };
