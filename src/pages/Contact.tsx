@@ -1,12 +1,8 @@
 import { useState, type FormEvent } from "react";
 import {
   ArrowRight,
-  Clock,
-  CreditCard,
-  HelpCircle,
   Mail,
   MapPin,
-  MessageSquare,
   Phone,
   Sparkles,
 } from "lucide-react";
@@ -19,25 +15,6 @@ import Reveal from "@/components/Reveal";
 import { toast } from "@/hooks/use-toast";
 
 const FORM_ACTION = "https://formspree.io/f/xbdwjezl";
-
-const faqs = [
-  {
-    q: "Wie schnell antworten Sie auf eine Anfrage?",
-    a: "Innerhalb von 24 Stunden. Anfragen über das Formular senden auch nachts ein Bestätigungsmail.",
-  },
-  {
-    q: "Welche Zahlungsarten akzeptieren Sie?",
-    a: "TWINT, Kreditkarte, Rechnung für Geschäftskunden sowie Bargeld in CHF und EUR.",
-  },
-  {
-    q: "Kann ich auch sehr kurzfristig buchen?",
-    a: "Ja — rufen Sie uns an. Bei freier Kapazität sind Fahrten oft schon innerhalb von 30 Minuten möglich.",
-  },
-  {
-    q: "Bieten Sie Firmenrahmenverträge?",
-    a: "Selbstverständlich. Auf Wunsch erstellen wir ein massgeschneidertes Konditionsmodell für Ihr Unternehmen.",
-  },
-];
 
 const Contact = () => {
   const [sending, setSending] = useState(false);
@@ -102,6 +79,7 @@ const Contact = () => {
 
             <div className="mt-8 space-y-4">
               <Reveal delay={320} variant="left">
+                {/* TODO: Platzhalter-Nummer durch echte TTC-Telefonnummer ersetzen */}
                 <a
                   href="tel:+41000000000"
                   className="flex items-center gap-4 p-4 rounded-xl bg-card shadow-card-soft hover-lift hover:shadow-elegant"
@@ -223,70 +201,6 @@ const Contact = () => {
       </section>
 
       <section className="py-20 md:py-28">
-        <div className="container-ttc grid lg:grid-cols-2 gap-12 items-start">
-          <div>
-            <Reveal>
-              <span className="eco-chip mb-4">
-                <HelpCircle className="h-3.5 w-3.5" /> FAQ
-              </span>
-            </Reveal>
-            <Reveal delay={120}>
-              <h2 className="font-display text-3xl md:text-5xl font-bold text-primary-deep">
-                Häufige <span className="gradient-text">Fragen.</span>
-              </h2>
-            </Reveal>
-            <Reveal delay={240}>
-              <p className="mt-4 text-lg text-muted-foreground">
-                Antworten auf das, was Kunden uns am häufigsten stellen.
-              </p>
-            </Reveal>
-
-            <Reveal delay={360}>
-              <div className="mt-8 space-y-4">
-                <div className="flex items-center gap-3 text-sm text-muted-foreground">
-                  <div
-                    className="h-10 w-10 rounded-xl bg-eco-soft flex items-center justify-center"
-                    style={{ color: "hsl(var(--eco))" }}
-                  >
-                    <Clock className="h-5 w-5" />
-                  </div>
-                  <span>Antwort innerhalb von <strong className="text-primary-deep">24 Stunden</strong></span>
-                </div>
-                <div className="flex items-center gap-3 text-sm text-muted-foreground">
-                  <div
-                    className="h-10 w-10 rounded-xl bg-eco-soft flex items-center justify-center"
-                    style={{ color: "hsl(var(--eco))" }}
-                  >
-                    <CreditCard className="h-5 w-5" />
-                  </div>
-                  <span>Zahlung per <strong className="text-primary-deep">TWINT, Karte, Rechnung</strong></span>
-                </div>
-                <div className="flex items-center gap-3 text-sm text-muted-foreground">
-                  <div
-                    className="h-10 w-10 rounded-xl bg-eco-soft flex items-center justify-center"
-                    style={{ color: "hsl(var(--eco))" }}
-                  >
-                    <MessageSquare className="h-5 w-5" />
-                  </div>
-                  <span>Direkter Kontakt — <strong className="text-primary-deep">kein Call-Center</strong></span>
-                </div>
-              </div>
-            </Reveal>
-          </div>
-          <div className="space-y-4">
-            {faqs.map((f, i) => (
-              <Reveal key={f.q} delay={i * 100} variant="up">
-                <Card className="p-6 hover-lift hover:shadow-elegant border-border/60">
-                  <h3 className="font-display text-lg font-bold text-primary-deep">{f.q}</h3>
-                  <p className="mt-2 text-muted-foreground leading-relaxed">{f.a}</p>
-                </Card>
-              </Reveal>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section className="py-16 md:py-24">
         <div className="container-ttc">
           <Reveal>
             <Card className="relative overflow-hidden p-10 md:p-14 bg-gradient-eco text-white shadow-elegant border-0">
@@ -306,6 +220,7 @@ const Contact = () => {
                   </p>
                 </div>
                 <div className="md:justify-self-end">
+                  {/* TODO: Platzhalter-Nummer durch echte TTC-Telefonnummer ersetzen */}
                   <Button asChild variant="hero" size="xl">
                     <a href="tel:+41000000000">
                       Jetzt anrufen <ArrowRight className="ml-2 h-5 w-5" />

@@ -14,6 +14,7 @@ import { Card } from "@/components/ui/card";
 import Reveal from "@/components/Reveal";
 import heroImg from "@/assets/eco-charging.jpg";
 import vanImg from "@/assets/airport.jpg";
+import fleetImg from "@/assets/electric-van.jpg";
 
 const serviceAreas = [
   { region: "Zentralschweiz", places: "Luzern, Zug, Schwyz, Stans, Sarnen" },
@@ -30,55 +31,56 @@ const Home = () => {
           <img
             src={heroImg}
             alt="Elektrofahrzeug bei Sonnenuntergang"
-            className="h-full w-full object-cover animate-hero-zoom"
+            className="h-full w-full object-cover"
             width={1920}
             height={1080}
+            fetchPriority="high"
           />
           <div
-            className="absolute inset-0 animate-gradient-shift"
+            className="absolute inset-0"
             style={{ background: "var(--gradient-hero)" }}
           />
         </div>
         <div className="relative container-ttc py-24 md:py-36 lg:py-44">
           <div className="max-w-3xl">
-            <Reveal variant="fade" duration={800}>
-              <span className="eco-chip mb-6 bg-white/90 animate-float">
-                <Leaf className="h-3.5 w-3.5" /> 100% Elektro — 100% Öko unterwegs
+            <Reveal variant="fade" duration={700}>
+              <span className="eco-chip mb-6 bg-white/90">
+                <Leaf className="h-3.5 w-3.5" aria-hidden="true" /> 100% Elektro — 100% Öko unterwegs
               </span>
             </Reveal>
-            <Reveal delay={120} duration={900}>
+            <Reveal delay={100} duration={800}>
               <h1 className="font-display text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white leading-[1.05]">
-                Total Transport Company —{" "}
-                <span className="text-eco-soft">Ihre grüne Wahl</span> für nachhaltige Mobilität.
+                Premium-Mobilität.{" "}
+                <span className="text-eco-soft">Klimaneutral.</span>
               </h1>
             </Reveal>
-            <Reveal delay={260} duration={800}>
+            <Reveal delay={200} duration={700}>
               <p className="mt-6 text-lg md:text-xl text-white/90 max-w-2xl">
-                100% Elektrisch. 100% Zuverlässig. Premium-Komfort, klimaneutral unterwegs.
+                100% Elektrisch. 100% Zuverlässig. Ihre grüne Wahl für Taxi, Flughafentransfer und Kurierdienst in der Zentralschweiz.
               </p>
             </Reveal>
-            <Reveal delay={380} duration={800}>
+            <Reveal delay={300} duration={700}>
               <div className="mt-8 flex flex-col sm:flex-row gap-3">
                 <Button asChild variant="hero" size="xl">
                   <Link to="/kontakt">
-                    Jetzt Fahrt buchen <ArrowRight className="ml-2 h-5 w-5" />
+                    Jetzt Fahrt buchen <ArrowRight className="ml-2 h-5 w-5" aria-hidden="true" />
                   </Link>
                 </Button>
                 <Button asChild variant="glass" size="xl">
-                  <Link to="/kontakt">Offerte anfragen</Link>
+                  <Link to="/dienstleistungen">Dienstleistungen ansehen</Link>
                 </Button>
               </div>
             </Reveal>
-            <Reveal delay={520} duration={800}>
+            <Reveal delay={420} duration={700}>
               <div className="mt-12 flex flex-wrap gap-6 text-white/85 text-sm">
                 <div className="flex items-center gap-2">
-                  <Sparkles className="h-4 w-4 text-eco-soft" /> 0 g CO₂ pro km
+                  <Sparkles className="h-4 w-4 text-eco-soft" aria-hidden="true" /> 0 g CO₂ pro km
                 </div>
                 <div className="flex items-center gap-2">
-                  <Clock className="h-4 w-4 text-eco-soft" /> 24/7 Service
+                  <Clock className="h-4 w-4 text-eco-soft" aria-hidden="true" /> 24/7 Service
                 </div>
                 <div className="flex items-center gap-2">
-                  <ShieldCheck className="h-4 w-4 text-eco-soft" /> Lizenziert in LU
+                  <ShieldCheck className="h-4 w-4 text-eco-soft" aria-hidden="true" /> Lizenziert in LU
                 </div>
               </div>
             </Reveal>
@@ -107,8 +109,8 @@ const Home = () => {
             <Reveal delay={120} variant="up">
               <div className="rounded-3xl overflow-hidden relative group hover-lift shadow-elegant">
                 <img
-                  src={heroImg}
-                  alt="Tesla Model Y Limousine"
+                  src={fleetImg}
+                  alt="Premium Elektro-Limousine an Ladestation"
                   loading="lazy"
                   width={1280}
                   height={960}

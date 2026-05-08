@@ -23,6 +23,7 @@ export const navItems: NavItem[] = [
   { to: "/", label: "Home" },
   { to: "/dienstleistungen", label: "Dienstleistungen" },
   { to: "/nachhaltigkeit", label: "Nachhaltigkeit" },
+  { to: "/faq", label: "FAQ" },
   { to: "/team", label: "Team" },
   { to: "/kontakt", label: "Kontakt" },
 ];
@@ -73,6 +74,46 @@ export const ecoFeatures: EcoFeature[] = [
   { icon: BatteryCharging, title: "Moderne Flotte", desc: "Tesla Model Y, Mercedes EQV & mehr." },
   { icon: ShieldCheck, title: "Schweizer Qualität", desc: "Pünktlich, diskret, lizenziert." },
   { icon: Clock, title: "24/7 Verfügbar", desc: "Rund um die Uhr für Sie bereit." },
+];
+
+export interface FaqItem {
+  q: string;
+  a: string;
+}
+
+export const faqs: FaqItem[] = [
+  {
+    q: "Wie schnell antworten Sie auf eine Anfrage?",
+    a: "Innerhalb von 24 Stunden. Anfragen über das Formular senden auch nachts ein Bestätigungsmail.",
+  },
+  {
+    q: "Welche Zahlungsarten akzeptieren Sie?",
+    a: "TWINT, Kreditkarte, Rechnung für Geschäftskunden sowie Bargeld in CHF und EUR.",
+  },
+  {
+    q: "Kann ich auch sehr kurzfristig buchen?",
+    a: "Ja — rufen Sie uns an. Bei freier Kapazität sind Fahrten oft schon innerhalb von 30 Minuten möglich.",
+  },
+  {
+    q: "Bieten Sie Firmenrahmenverträge?",
+    a: "Selbstverständlich. Auf Wunsch erstellen wir ein massgeschneidertes Konditionsmodell für Ihr Unternehmen.",
+  },
+  {
+    q: "Wie erkenne ich meine Fahrpreise vorab?",
+    a: "Für Flughafentransfers bieten wir Fixpreise an. Bei Stadtfahren und Individualfahrten erhalten Sie vorab eine Offerte.",
+  },
+  {
+    q: "Fahren Sie auch ausserhalb der Zentralschweiz?",
+    a: "Ja. Wir fahren in die ganze Schweiz und auf Wunsch auch ins angrenzende Ausland.",
+  },
+  {
+    q: "Sind Kindersitze verfügbar?",
+    a: "Ja, auf Anfrage stellen wir Ihnen Kindersitze kostenlos zur Verfügung. Bitte bei der Buchung angeben.",
+  },
+  {
+    q: "Was passiert wenn mein Flug Verspätung hat?",
+    a: "Wir tracken Ihren Flug live und passen die Abholzeit automatisch an. Sie zahlen nicht für Wartezeit bei Flugverspätung.",
+  },
 ];
 
 export interface TeamMember {

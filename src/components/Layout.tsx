@@ -2,6 +2,8 @@ import { useEffect } from "react";
 import { Outlet, useLocation } from "react-router-dom";
 import SiteHeader from "@/components/SiteHeader";
 import SiteFooter from "@/components/SiteFooter";
+import CallFab from "@/components/CallFab";
+import CookieBanner from "@/components/CookieBanner";
 
 const Layout = () => {
   const { pathname } = useLocation();
@@ -17,6 +19,8 @@ const Layout = () => {
         <Outlet />
       </main>
       <SiteFooter />
+      <CallFab />
+      <CookieBanner />
     </div>
   );
 };

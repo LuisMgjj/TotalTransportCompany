@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 80 50" role="img" aria-label="Bargeld CHF">
+  <title>Bargeld CHF</title>
+  <rect x="2" y="2" width="76" height="46" rx="4" fill="#0E7C3A"/>
+  <rect x="6" y="6" width="68" height="38" rx="2" fill="none" stroke="#FFFFFF" stroke-opacity="0.35" stroke-width="1"/>
+  <circle cx="40" cy="25" r="11" fill="none" stroke="#FFFFFF" stroke-width="1.5"/>
+  <text x="40" y="29" text-anchor="middle" font-family="Inter, system-ui, sans-serif" font-weight="800" font-size="9" fill="#FFFFFF" letter-spacing="0.5">CHF</text>
+</svg>

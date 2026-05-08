@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Link, NavLink } from "react-router-dom";
-import { Menu, X } from "lucide-react";
+import { ArrowRight, Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import logo from "@/assets/logo.png";
@@ -48,15 +48,55 @@ const SiteHeader = () => {
         </nav>
         <button
           className="md:hidden p-2"
-          onClick={() => setMenuOpen((open) => !open)}
-          aria-label="Menü"
+          onClick={() => setMenuOpen(true)}
+          aria-label="Menü öffnen"
+          aria-expanded={menuOpen}
+          aria-controls="mobile-nav"
         >
-          {menuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+          <Menu className="h-6 w-6" aria-hidden="true" />
         </button>
       </div>
-      {menuOpen && (
-        <div className="md:hidden border-t border-border bg-background">
-          <div className="container-ttc py-4 flex flex-col gap-4">
+
+      {/* Mobile slide-in overlay */}
+      <div
+        id="mobile-nav"
+        role="dialog"
+        aria-modal="true"
+        aria-label="Navigation"
+        className={cn(
+          "fixed inset-0 z-[60] transition-opacity duration-300 md:hidden",
+          menuOpen ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none",
+        )}
+      >
+        {/* Backdrop */}
+        <div
+          className="absolute inset-0 bg-black/40 backdrop-blur-sm"
+          onClick={closeMenu}
+        />
+
+        {/* Drawer panel */}
+        <div
+          className={cn(
+            "absolute right-0 top-0 h-full w-80 max-w-[85vw] bg-background shadow-2xl flex flex-col transition-transform duration-300",
+            menuOpen ? "translate-x-0" : "translate-x-full",
+          )}
+        >
+          {/* Header */}
+          <div className="flex items-center justify-between px-6 h-[72px] border-b border-border">
+            <Link to="/" onClick={closeMenu} className="flex items-center gap-3">
+              <img src={logo} alt="" className="h-10 w-auto" />
+            </Link>
+            <button
+              onClick={closeMenu}
+              className="p-2 text-muted-foreground hover:text-foreground transition-colors"
+              aria-label="Menü schließen"
+            >
+              <X className="h-6 w-6" aria-hidden="true" />
+            </button>
+          </div>
+
+          {/* Links */}
+          <nav className="flex-1 overflow-y-auto px-6 py-8 flex flex-col gap-1">
             {navItems
               .filter((n) => n.to !== "/")
               .map((n) => (
@@ -67,22 +107,29 @@ const SiteHeader = () => {
                   onClick={closeMenu}
                   className={({ isActive }) =>
                     cn(
-                      "text-base font-medium",
-                      isActive ? "text-primary" : "text-foreground",
+                      "block rounded-xl px-4 py-3 text-base font-medium transition-colors",
+                      isActive
+                        ? "bg-eco-soft text-primary"
+                        : "text-foreground hover:bg-secondary/60",
                     )
                   }
                 >
                   {n.label}
                 </NavLink>
               ))}
-            <Button asChild variant="eco">
-              <Link to="/kontakt" onClick={closeMenu}>
-                Jetzt buchen
-              </Link>
-            </Button>
-          </div>
+
+            {/* CTA */}
+            <div className="mt-4 pt-4 border-t border-border">
+              <Button asChild variant="eco" size="lg" className="w-full" onClick={closeMenu}>
+                <Link to="/kontakt">
+                  Jetzt Fahrt buchen
+                  <ArrowRight className="ml-2 h-4 w-4" aria-hidden="true" />
+                </Link>
+              </Button>
+            </div>
+          </nav>
         </div>
-      )}
+      </div>
     </header>
   );
 };

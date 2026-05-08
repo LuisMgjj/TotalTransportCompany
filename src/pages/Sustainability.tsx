@@ -16,10 +16,10 @@ import leafPlug from "@/assets/electric-van.jpg";
 import { ecoFeatures } from "@/data/site";
 
 const stats = [
-  { end: 0, prefix: "", suffix: " g", label: "CO₂ pro Kilometer", icon: Leaf },
-  { end: 100, prefix: "", suffix: " %", label: "Schweizer Ökostrom", icon: Zap },
-  { end: -65, prefix: "", suffix: " %", label: "Weniger Lärmemission", icon: Volume2 },
-  { end: 40, prefix: "+", suffix: " %", label: "Effizienter als Diesel", icon: Gauge },
+  { end: 0, prefix: "", suffix: " g", label: "CO₂ pro Kilometer", icon: Leaf, animate: false },
+  { end: 100, prefix: "", suffix: " %", label: "Schweizer Ökostrom", icon: Zap, animate: true },
+  { end: 65, prefix: "−", suffix: " %", label: "Weniger Lärmemission", icon: Volume2, animate: true },
+  { end: 40, prefix: "+", suffix: " %", label: "Effizienter als Diesel", icon: Gauge, animate: true },
 ];
 
 const comparison = [
@@ -60,7 +60,7 @@ const Sustainability = () => {
                 height={960}
                 className="rounded-3xl shadow-elegant w-full h-auto object-cover aspect-[4/3]"
               />
-              <div className="absolute -bottom-6 -right-6 hidden sm:flex bg-card rounded-2xl shadow-elegant p-5 gap-4 items-center border border-border animate-float">
+              <div className="absolute -bottom-6 -right-6 hidden sm:flex bg-card rounded-2xl shadow-elegant p-5 gap-4 items-center border border-border/80">
                 <div className="relative">
                   <div className="absolute inset-0 rounded-full animate-pulse-ring" />
                   <div className="relative h-12 w-12 rounded-full bg-eco flex items-center justify-center">
@@ -69,7 +69,7 @@ const Sustainability = () => {
                 </div>
                 <div>
                   <div className="font-display font-bold text-2xl text-primary-deep tabular-nums">
-                    <CountUp end={0} suffix=" g" duration={1600} />
+                    0 g
                   </div>
                   <div className="text-xs text-muted-foreground">CO₂ pro Kilometer</div>
                 </div>
@@ -92,21 +92,23 @@ const Sustainability = () => {
                 Unsere reine Elektroflotte reduziert Lärm und Abgase auf jeder Strecke — ohne dass Sie auf Premium-Komfort verzichten müssen.
               </p>
             </Reveal>
-            <div className="mt-8 grid sm:grid-cols-2 gap-5">
+            <div className="mt-8 grid sm:grid-cols-2 gap-4">
               {ecoFeatures.map((f, i) => (
                 <Reveal key={f.title} delay={300 + i * 80} variant="up">
-                  <div className="flex gap-4 group">
-                    <div
-                      className="shrink-0 h-11 w-11 rounded-xl bg-eco-soft flex items-center justify-center transition-transform duration-500 group-hover:scale-110 group-hover:rotate-6"
-                      style={{ color: "hsl(var(--eco))" }}
-                    >
-                      <f.icon className="h-5 w-5" />
+                  <Card className="group p-5 border-border/60 shadow-card-soft hover-lift hover:shadow-elegant bg-card/80">
+                    <div className="flex gap-4 items-start">
+                      <div
+                        className="shrink-0 h-11 w-11 rounded-xl bg-eco-soft flex items-center justify-center transition-transform duration-500 group-hover:scale-110 group-hover:rotate-6"
+                        style={{ color: "hsl(var(--eco))" }}
+                      >
+                        <f.icon className="h-5 w-5" aria-hidden="true" />
+                      </div>
+                      <div>
+                        <div className="font-semibold text-primary-deep">{f.title}</div>
+                        <div className="text-sm text-muted-foreground leading-relaxed">{f.desc}</div>
+                      </div>
                     </div>
-                    <div>
-                      <div className="font-semibold text-primary-deep">{f.title}</div>
-                      <div className="text-sm text-muted-foreground">{f.desc}</div>
-                    </div>
-                  </div>
+                  </Card>
                 </Reveal>
               ))}
             </div>
@@ -118,10 +120,7 @@ const Sustainability = () => {
         <div className="container-ttc">
           <Reveal>
             <div className="max-w-2xl mb-12">
-              <span className="eco-chip mb-4">
-                <BatteryCharging className="h-3.5 w-3.5" /> Unser Impact
-              </span>
-              <h2 className="mt-4 font-display text-3xl md:text-5xl font-bold text-primary-deep">
+              <h2 className="font-display text-3xl md:text-5xl font-bold text-primary-deep">
                 Zahlen, die <span className="gradient-text">wirken.</span>
               </h2>
             </div>
@@ -129,20 +128,29 @@ const Sustainability = () => {
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-6">
             {stats.map((s, i) => (
               <Reveal key={s.label} delay={i * 100} variant="up">
-                <Card className="p-7 text-center hover-lift hover:shadow-elegant border-border/60 h-full">
+                <Card className="group p-7 text-center hover-lift hover:shadow-elegant border border-border/80 h-full bg-white shadow-card-soft relative overflow-hidden">
+                  <div className="absolute inset-x-0 top-0 h-1 bg-gradient-eco" />
                   <div
-                    className="mx-auto mb-4 h-12 w-12 rounded-xl bg-eco-soft flex items-center justify-center"
+                    className="mx-auto mb-4 h-12 w-12 rounded-xl bg-eco-soft flex items-center justify-center transition-transform duration-500 group-hover:scale-110"
                     style={{ color: "hsl(var(--eco))" }}
                   >
-                    <s.icon className="h-6 w-6" />
+                    <s.icon className="h-6 w-6" aria-hidden="true" />
                   </div>
                   <div className="font-display text-3xl md:text-4xl font-bold text-primary-deep tabular-nums">
-                    <CountUp
-                      end={s.end}
-                      prefix={s.prefix}
-                      suffix={s.suffix}
-                      duration={1800}
-                    />
+                    {s.animate ? (
+                      <CountUp
+                        end={s.end}
+                        prefix={s.prefix}
+                        suffix={s.suffix}
+                        duration={1800}
+                      />
+                    ) : (
+                      <span>
+                        {s.prefix}
+                        {s.end}
+                        {s.suffix}
+                      </span>
+                    )}
                   </div>
                   <div className="mt-1 text-sm text-muted-foreground">{s.label}</div>
                 </Card>
@@ -172,57 +180,25 @@ const Sustainability = () => {
             </Reveal>
           </div>
           <Reveal variant="right" delay={120}>
-            <Card className="overflow-hidden border-border/60 shadow-card-soft">
-              <div className="grid grid-cols-3 bg-gradient-soft px-6 py-4 text-sm font-semibold text-primary-deep">
+            <Card className="overflow-hidden border border-border/80 shadow-card-soft bg-white">
+              <div className="grid grid-cols-3 bg-gradient-eco px-6 py-4 text-sm font-semibold text-white">
                 <div>Kriterium</div>
                 <div className="text-center">Diesel</div>
-                <div className="text-center" style={{ color: "hsl(var(--eco))" }}>
-                  TTC Elektro
-                </div>
+                <div className="text-center">TTC Elektro</div>
               </div>
-              {comparison.map((row) => (
+              {comparison.map((row, idx) => (
                 <div
                   key={row.label}
-                  className="grid grid-cols-3 px-6 py-4 border-t border-border/60 text-sm"
+                  className={`grid grid-cols-3 px-6 py-4 border-t border-border/60 text-sm ${idx % 2 === 1 ? "bg-secondary/30" : ""}`}
                 >
                   <div className="text-muted-foreground">{row.label}</div>
                   <div className="text-center text-foreground">{row.diesel}</div>
-                  <div
-                    className="text-center font-semibold"
-                    style={{ color: "hsl(var(--eco))" }}
-                  >
+                  <div className="text-center font-semibold text-eco">
                     {row.electric}
                   </div>
                 </div>
               ))}
             </Card>
-          </Reveal>
-        </div>
-      </section>
-
-      <section className="py-10 md:py-12 bg-gradient-soft">
-        <div className="container-ttc">
-          <Reveal>
-            <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-6">
-              <div>
-                <h3 className="font-display text-xl md:text-2xl font-bold text-primary-deep">
-                  Bereit für die elektrische Premium-Fahrt?
-                </h3>
-                <p className="mt-1 text-sm text-muted-foreground">
-                  Wir freuen uns auf Ihre Anfrage — schnell, persönlich und nachhaltig.
-                </p>
-              </div>
-              <div className="flex flex-wrap gap-3">
-                <Button asChild variant="eco" size="lg">
-                  <Link to="/kontakt">
-                    Jetzt Fahrt buchen <ArrowRight className="ml-2 h-4 w-4" />
-                  </Link>
-                </Button>
-                <Button asChild variant="outline" size="lg">
-                  <Link to="/dienstleistungen">Dienstleistungen</Link>
-                </Button>
-              </div>
-            </div>
           </Reveal>
         </div>
       </section>
