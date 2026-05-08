@@ -47,25 +47,40 @@ const SiteHeader = () => {
         </nav>
         <button
           type="button"
-          className="md:hidden p-2 touch-manipulation active:opacity-60"
+          className="md:hidden p-2 touch-manipulation active:opacity-60 transition-opacity"
           onClick={() => setMenuOpen(!menuOpen)}
           aria-label={menuOpen ? "Menü schließen" : "Menü öffnen"}
           aria-expanded={menuOpen}
         >
-          {menuOpen ? (
-            <X className="h-6 w-6" aria-hidden="true" />
-          ) : (
-            <Menu className="h-6 w-6" aria-hidden="true" />
-          )}
+          <span
+            className={cn(
+              "block transition-transform duration-300",
+              menuOpen ? "rotate-180" : "rotate-0",
+            )}
+          >
+            {menuOpen ? (
+              <X className="h-6 w-6" aria-hidden="true" />
+            ) : (
+              <Menu className="h-6 w-6" aria-hidden="true" />
+            )}
+          </span>
         </button>
       </div>
 
-      {menuOpen && (
-        <div className="md:hidden bg-background border-t border-border shadow-lg">
-          <nav className="container-ttc py-4 flex flex-col gap-1">
+      {/* Mobile menu - animated dropdown */}
+      <div
+        className={cn(
+          "md:hidden overflow-hidden transition-all duration-500 ease-in-out border-t border-border",
+          menuOpen
+            ? "max-h-[80vh] opacity-100 border-transparent shadow-elegant"
+            : "max-h-0 opacity-0 border-transparent",
+        )}
+      >
+        <div className="glass bg-background/95 pt-3 pb-4 px-5">
+          <nav className="flex flex-col gap-1">
             {navItems
               .filter((n) => n.to !== "/")
-              .map((n) => (
+              .map((n, i) => (
                 <NavLink
                   key={n.to}
                   to={n.to}
@@ -73,27 +88,29 @@ const SiteHeader = () => {
                   onClick={closeMenu}
                   className={({ isActive }) =>
                     cn(
-                      "block rounded-lg px-4 py-3 text-base font-medium transition-colors",
+                      "block rounded-xl px-4 py-3 text-base font-medium transition-all duration-300",
+                      "hover:bg-secondary/60 active:bg-secondary",
                       isActive
                         ? "bg-eco-soft text-primary"
-                        : "text-foreground hover:bg-secondary/60",
+                        : "text-foreground",
                     )
                   }
+                  style={{ animationDelay: `${i * 50}ms` }}
                 >
                   {n.label}
                 </NavLink>
               ))}
-            <div className="mt-2 pt-3 border-t border-border">
-              <Button asChild variant="eco" size="lg" className="w-full" onClick={closeMenu}>
-                <Link to="/kontakt">
-                  Jetzt Fahrt buchen
-                  <ArrowRight className="ml-2 h-4 w-4" aria-hidden="true" />
-                </Link>
-              </Button>
-            </div>
           </nav>
+          <div className="mt-3 pt-3 border-t border-border/50">
+            <Button asChild variant="eco" size="lg" className="w-full" onClick={closeMenu}>
+              <Link to="/kontakt">
+                Jetzt Fahrt buchen
+                <ArrowRight className="ml-2 h-4 w-4" aria-hidden="true" />
+              </Link>
+            </Button>
+          </div>
         </div>
-      )}
+      </div>
     </header>
   );
 };
