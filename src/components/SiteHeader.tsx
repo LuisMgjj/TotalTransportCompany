@@ -16,10 +16,10 @@ const SiteHeader = () => {
       <div className="w-full flex h-[72px] md:h-20 items-center justify-between pl-[40px] pr-8 sm:pr-16 lg:pr-32 xl:pr-48">
         <Link
           to="/"
-          className="site-logo-link flex items-center gap-3 text-[0]"
+          className="site-logo-link flex items-center gap-3 text-[0] md:pl-0 pl-0 -ml-4"
           aria-label="Total Transport Company Startseite"
         >
-          <img src={logoNew} alt="" className="h-12 w-auto md:h-16" />
+          <img src={logoNew} alt="" className="h-16 w-auto md:h-24 mt-5 md:mt-3" />
         </Link>
         <nav className="hidden md:flex items-center gap-10">
           {navItems
