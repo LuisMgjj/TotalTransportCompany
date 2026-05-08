@@ -3,7 +3,7 @@ import { Link, NavLink } from "react-router-dom";
 import { ArrowRight, Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
-import logo from "@/assets/logo.png";
+import logoNew from "@/assets/logo-new.png";
 import { navItems } from "@/data/site";
 
 const SiteHeader = () => {
@@ -19,7 +19,7 @@ const SiteHeader = () => {
           className="site-logo-link flex items-center gap-3 text-[0]"
           aria-label="Total Transport Company Startseite"
         >
-          <img src={logo} alt="" className="h-10 w-auto md:h-12" />
+          <img src={logoNew} alt="" className="h-10 w-auto md:h-12" />
         </Link>
         <nav className="hidden md:flex items-center gap-10">
           {navItems
