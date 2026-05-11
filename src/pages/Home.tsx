@@ -119,7 +119,7 @@ const Home = () => {
                 <div className="absolute inset-0 bg-gradient-to-t from-primary-deep via-primary-deep/40 to-transparent" />
                 <div className="absolute bottom-0 left-0 p-6">
                   <div className="text-sm text-eco-soft font-semibold">Limousine</div>
-                  <div className="font-display text-2xl font-bold text-white">Tesla Model Y</div>
+                  <div className="font-display text-2xl font-bold text-white">Mercedes EQV</div>
                   <div className="text-sm text-white/75 mt-1">Bis 4 Passagiere · Premium-Komfort</div>
                 </div>
               </div>
@@ -137,7 +137,7 @@ const Home = () => {
                 <div className="absolute inset-0 bg-gradient-to-t from-primary-deep via-primary-deep/40 to-transparent" />
                 <div className="absolute bottom-0 left-0 p-6">
                   <div className="text-sm text-eco-soft font-semibold">Van & Shuttle</div>
-                  <div className="font-display text-2xl font-bold text-white">Mercedes EQV</div>
+                  <div className="font-display text-2xl font-bold text-white">Mercedes Van</div>
                   <div className="text-sm text-white/75 mt-1">Bis 7 Passagiere · Events & Gruppen</div>
                 </div>
               </div>
