@@ -29,11 +29,7 @@ const Contact = () => {
     try {
       const response = await fetch(FORM_ACTION, {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Accept: "application/json",
-        },
-        body: JSON.stringify(data),
+        body: formData,
       });
 
       if (response.ok) {
