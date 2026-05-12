@@ -24,11 +24,13 @@ const Contact = () => {
     setSending(true);
 
     const formData = new FormData(e.currentTarget);
-    const data = Object.fromEntries(formData.entries());
 
     try {
       const response = await fetch(FORM_ACTION, {
         method: "POST",
+        headers: {
+          Accept: "application/json",
+        },
         body: formData,
       });
 
