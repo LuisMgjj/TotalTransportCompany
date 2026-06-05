@@ -12,11 +12,6 @@ const Team = () => {
               Unser <span className="gradient-text">Team.</span>
             </h1>
           </Reveal>
-          <Reveal delay={120}>
-            <p className="mt-4 text-lg text-muted-foreground">
-              Hinter jedem Wagen steht ein Team, das brennt: für leise, saubere Mobilität, für ortskundige Routen und für Gäste, die mehr erwarten als ein Taxi.
-            </p>
-          </Reveal>
         </div>
         <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-8 max-w-6xl">
           {team.map((m, i) => (
