@@ -14,6 +14,7 @@ import type { ComponentType } from "react";
 import denisImg from "@/assets/team/denis.jpg";
 import janosImg from "@/assets/team/janos.jpg";
 import gustavoImg from "@/assets/team/gustavo.jpg";
+import petarImg from "@/assets/team/petar.jpg";
 
 export type IconType = ComponentType<{ className?: string }>;
 
@@ -124,6 +125,7 @@ export interface TeamMember {
   role: string;
   desc: string;
   image?: string;
+  imagePosition?: string;
 }
 
 export const team: TeamMember[] = [
@@ -132,6 +134,13 @@ export const team: TeamMember[] = [
     role: "Inhaber & Gründer",
     desc: "Visionär hinter einer der grünsten Elektroflotten der Schweiz.",
     image: denisImg,
+    imagePosition: "center 25%",
+  },
+  {
+    name: "Petar Grahovac",
+    role: "Assistent der GL",
+    desc: "Unterstützt die Geschäftsleitung mit Übersicht und Tatkraft.",
+    image: petarImg,
   },
   {
     name: "Janos Zöldi",

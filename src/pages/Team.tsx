@@ -14,11 +14,11 @@ const Team = () => {
           </Reveal>
           <Reveal delay={120}>
             <p className="mt-4 text-lg text-muted-foreground">
-              Hinter Total Transport Company steht Denis Gojak mit seinen erfahrenen Fahrern Janos Zöldi und Gustavo Schoedl.
+              Hinter Total Transport Company steht Denis Gojak mit Petar Grahovac sowie den erfahrenen Fahrern Janos Zöldi und Gustavo Schoedl.
             </p>
           </Reveal>
         </div>
-        <div className="grid sm:grid-cols-3 gap-8 max-w-5xl">
+        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-8 max-w-6xl">
           {team.map((m, i) => (
             <Reveal key={m.name} delay={i * 140} variant="up">
               <Card className="group p-8 text-center shadow-card-soft hover-lift hover:shadow-elegant border border-border/80 h-full bg-card">
@@ -27,7 +27,8 @@ const Team = () => {
                     src={m.image}
                     alt={m.name}
                     loading="lazy"
-                    className="mx-auto mb-5 h-32 w-32 rounded-full object-cover object-top shadow-glow ring-4 ring-primary/10 transition-transform duration-500 group-hover:scale-110 group-hover:-rotate-3"
+                    style={{ objectPosition: m.imagePosition ?? "top" }}
+                    className="mx-auto mb-5 h-32 w-32 rounded-full object-cover shadow-glow ring-4 ring-primary/10 transition-transform duration-500 group-hover:scale-110 group-hover:-rotate-3"
                   />
                 ) : (
                   <div className="mx-auto mb-5 h-32 w-32 rounded-full bg-gradient-primary flex items-center justify-center text-primary-foreground font-display font-bold text-3xl shadow-glow transition-transform duration-500 group-hover:scale-110 group-hover:-rotate-3">
