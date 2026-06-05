@@ -141,7 +141,7 @@ export const team: TeamMember[] = [
     role: "Assistent der GL",
     desc: "Unterstützt die Geschäftsleitung mit Übersicht und Tatkraft.",
     image: petarImg,
-    imagePosition: "center 68%",
+    imagePosition: "center 85%",
   },
   {
     name: "Janos Zöldi",
