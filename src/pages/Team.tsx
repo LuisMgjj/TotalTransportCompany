@@ -14,7 +14,7 @@ const Team = () => {
           </Reveal>
           <Reveal delay={120}>
             <p className="mt-4 text-lg text-muted-foreground">
-              Hinter Total Transport Company steht Denis Gojak mit Petar Grahovac sowie den erfahrenen Fahrern Janos Zöldi und Gustavo Schoedl.
+              Hinter jedem Wagen steht ein Team, das brennt: für leise, saubere Mobilität, für ortskundige Routen und für Gäste, die mehr erwarten als ein Taxi.
             </p>
           </Reveal>
         </div>
