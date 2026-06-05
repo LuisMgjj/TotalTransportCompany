@@ -11,6 +11,9 @@ import {
   Zap,
 } from "lucide-react";
 import type { ComponentType } from "react";
+import denisImg from "@/assets/team/denis.jpg";
+import janosImg from "@/assets/team/janos.jpg";
+import gustavoImg from "@/assets/team/gustavo.jpg";
 
 export type IconType = ComponentType<{ className?: string }>;
 
@@ -120,6 +123,7 @@ export interface TeamMember {
   name: string;
   role: string;
   desc: string;
+  image?: string;
 }
 
 export const team: TeamMember[] = [
@@ -127,15 +131,18 @@ export const team: TeamMember[] = [
     name: "Denis Gojak",
     role: "Inhaber & Gründer",
     desc: "Visionär hinter einer der grünsten Elektroflotten der Schweiz.",
+    image: denisImg,
   },
   {
     name: "Janos Zöldi",
     role: "Hauptfahrer",
     desc: "Erfahrener Chauffeur mit Auge fürs Detail.",
+    image: janosImg,
   },
   {
     name: "Gustavo Schoedl",
     role: "Hauptfahrer",
     desc: "Ortskundig, diskret, zuverlässig.",
+    image: gustavoImg,
   },
 ];

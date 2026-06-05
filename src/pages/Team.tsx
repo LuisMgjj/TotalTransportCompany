@@ -22,9 +22,18 @@ const Team = () => {
           {team.map((m, i) => (
             <Reveal key={m.name} delay={i * 140} variant="up">
               <Card className="group p-8 text-center shadow-card-soft hover-lift hover:shadow-elegant border border-border/80 h-full bg-card">
-                <div className="mx-auto mb-5 h-20 w-20 rounded-full bg-gradient-primary flex items-center justify-center text-primary-foreground font-display font-bold text-2xl shadow-glow transition-transform duration-500 group-hover:scale-110 group-hover:-rotate-3">
-                  {m.name.split(" ").map((p) => p[0]).join("")}
-                </div>
+                {m.image ? (
+                  <img
+                    src={m.image}
+                    alt={m.name}
+                    loading="lazy"
+                    className="mx-auto mb-5 h-32 w-32 rounded-full object-cover object-top shadow-glow ring-4 ring-primary/10 transition-transform duration-500 group-hover:scale-110 group-hover:-rotate-3"
+                  />
+                ) : (
+                  <div className="mx-auto mb-5 h-32 w-32 rounded-full bg-gradient-primary flex items-center justify-center text-primary-foreground font-display font-bold text-3xl shadow-glow transition-transform duration-500 group-hover:scale-110 group-hover:-rotate-3">
+                    {m.name.split(" ").map((p) => p[0]).join("")}
+                  </div>
+                )}
                 <h2 className="font-display text-xl font-bold text-primary-deep">
                   {m.name}
                 </h2>
