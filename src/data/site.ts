@@ -134,7 +134,7 @@ export const team: TeamMember[] = [
     role: "Inhaber & Gründer",
     desc: "Visionär hinter einer der grünsten Elektroflotten der Schweiz.",
     image: denisImg,
-    imagePosition: "center 15%",
+    imagePosition: "top",
   },
   {
     name: "Petar Grahovac",
